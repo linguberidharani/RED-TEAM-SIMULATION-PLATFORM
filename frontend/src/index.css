@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #080c10;
+  --surface: #0d1117;
+  --panel: #111820;
+  --border: #1e2d3d;
+  --accent: #00ff88;
+  --red: #ff3b3b;
+  --yellow: #ffd60a;
+  --blue: #0ea5e9;
+  --text: #c9d1d9;
+  --muted: #4a6270;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: #1e2d3d; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #00ff8840; }
+
+/* Scanline overlay on the whole app */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Utility classes */
+.font-display { font-family: 'Orbitron', sans-serif; }
+.font-mono   { font-family: 'Share Tech Mono', monospace; }
+.font-body   { font-family: 'Exo 2', sans-serif; }
+
+.glow-text {
+  text-shadow: 0 0 8px #00ff88, 0 0 20px #00ff8860;
+}
+.glow-red {
+  text-shadow: 0 0 8px #ff3b3b, 0 0 20px #ff3b3b60;
+}
+.glow-yellow {
+  text-shadow: 0 0 8px #ffd60a, 0 0 20px #ffd60a60;
+}
+
+/* Card base */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+/* Animated border for active elements */
+@keyframes borderPulse {
+  0%, 100% { border-color: #00ff8840; }
+  50%       { border-color: #00ff88; }
+}
+.border-pulse { animation: borderPulse 2s ease-in-out infinite; }
+
+/* Log entry fade-in */
+@keyframes logIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.log-entry { animation: logIn 0.3s ease forwards; }
+
+/* Flicker for critical alerts */
+@keyframes flicker {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.7; }
+  75%      { opacity: 0.9; }
+}
+.flicker { animation: flicker 2.5s infinite; }
+
+/* Slide-in from left */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.slide-in { animation: slideIn 0.4s ease forwards; }
+
+/* Node pulse for attack visualization */
+@keyframes nodePulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(255,59,59,0.6); }
+  50%      { box-shadow: 0 0 0 12px rgba(255,59,59,0); }
+}
+.node-pulse { animation: nodePulse 1.5s ease-in-out infinite; }
+
+/* Safe node glow */
+@keyframes safeGlow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,255,136,0.4); }
+  50%      { box-shadow: 0 0 0 8px rgba(0,255,136,0); }
+}
+.safe-glow { animation: safeGlow 3s ease-in-out infinite; }
