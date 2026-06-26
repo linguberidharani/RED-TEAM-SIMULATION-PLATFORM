@@ -67,4 +67,3 @@ async function sendOtpEmail(toEmail, otp, purpose = 'register') {
   });
 }
 module.exports = { generateOtp, sendOtpEmail };
-is this correct now ?
