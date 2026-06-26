@@ -5,15 +5,13 @@ function generateOtp() {
 }
 // ── Nodemailer transporter (reuse existing Gmail config) ──────
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: "smtp-relay.brevo.com",
   port: 587,
   secure: false,
+  family: 4,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false,
   },
 });
 
