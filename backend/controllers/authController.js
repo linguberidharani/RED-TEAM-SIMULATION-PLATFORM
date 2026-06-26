@@ -44,8 +44,14 @@ const register = async (req, res) => {
       return res.status(400).json({ error: 'Passwords do not match.' });
     }
 
-    // Check if email already used
-    if (store.findUserByEmail(email)) {
+    console.log("Register email:", email);
+    console.log("Current users:", store.users.map(u => u.email));
+
+    const existingUser = store.findUserByEmail(email);
+
+    console.log("Existing user:", existingUser);
+
+    if (existingUser) {
       return res.status(409).json({ error: 'An account with this email already exists.' });
     }
 
