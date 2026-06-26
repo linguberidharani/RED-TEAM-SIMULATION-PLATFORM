@@ -7,7 +7,7 @@ function generateOtp() {
 const transporter = nodemailer.createTransport({
   host: "smtp-relay.brevo.com",
   port: 465,
-  secure: false,
+  secure: true,
   auth: {
     user: process.env.MAIL_USER,
     pass: process.env.MAIL_PASS,
