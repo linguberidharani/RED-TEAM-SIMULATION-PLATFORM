@@ -258,11 +258,16 @@ export async function sendReport(data) {
   // Convert PDF to base64 string (strip the data URI prefix)
   const pdfBase64 = doc.output('datauristring').split(',')[1];
 
-  const response = await fetch('http://localhost:3001/report/send', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ pdfBase64 }),
-  });
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/report/send`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ pdfBase64 }),
+    }
+  );
 
   if (!response.ok) {
     const err = await response.json().catch(() => ({ error: 'Unknown error' }));
